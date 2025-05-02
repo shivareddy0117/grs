@@ -12,14 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WITTY_STONE_0DA558E0F }}
           action: upload
           app_location: "src"      # folder containing index.html
           output_location: "."     # root directory

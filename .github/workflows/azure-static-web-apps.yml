@@ -26,7 +26,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "src"
-          output_location: "src"
+          output_location: "."
           skip_app_build: true
           app_artifact_location: "/src"
           skip_deploy_on_missing_secrets: true

@@ -249,12 +249,12 @@
         </div>
     </section>
 
-    <!-- Application Form -->
+    <!-- Application Form Modal -->
     <div id="applicationForm" class="application-form">
         <div class="form-container">
             <span class="close-form" onclick="closeApplicationForm()">&times;</span>
             <h2>Apply for <span id="positionTitle"></span></h2>
-            <form id="applicationForm" class="application-form" enctype="multipart/form-data">
+            <form id="jobApplicationForm">
                 <div class="form-group">
                     <label for="name">Full Name *</label>
                     <input type="text" id="name" name="name" required>
@@ -269,13 +269,7 @@
                 </div>
                 <div class="form-group">
                     <label for="position">Position Applied For *</label>
-                    <select id="position" name="position" required>
-                        <option value="">Select a position</option>
-                        <option value="Software Developer">Software Developer</option>
-                        <option value="UI/UX Designer">UI/UX Designer</option>
-                        <option value="Project Manager">Project Manager</option>
-                        <option value="Business Analyst">Business Analyst</option>
-                    </select>
+                    <input type="text" id="position" name="position" readonly required>
                 </div>
                 <div class="form-group">
                     <label for="experience">Years of Experience *</label>
@@ -298,6 +292,7 @@
         function openApplicationForm(position) {
             document.getElementById('applicationForm').style.display = 'block';
             document.getElementById('positionTitle').textContent = position;
+            document.getElementById('position').value = position;
             document.body.style.overflow = 'hidden';
         }
 
@@ -306,36 +301,33 @@
             document.body.style.overflow = 'auto';
         }
 
-        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+        document.getElementById('jobApplicationForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const submitBtn = this.querySelector('.submit-btn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Submitting...';
-            
-            try {
-                const formData = new FormData(this);
-                
-                const response = await fetch('http://localhost:3000/submit-application', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    window.location.href = 'thank-you.html';
-                } else {
-                    alert('Error submitting application. Please try again.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error submitting application. Please try again.');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit Application';
-            }
+            showSuccessPopup();
         });
+
+        function showSuccessPopup() {
+            const popup = document.createElement('div');
+            popup.className = 'success-popup';
+            popup.innerHTML = `
+                <div class="success-popup-content">
+                    <h2>Application Submitted!</h2>
+                    <p>Thank you for applying. We will review your application and get back to you soon.</p>
+                    <button onclick="closeSuccessPopup()">Close</button>
+                </div>
+            `;
+            document.body.appendChild(popup);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSuccessPopup() {
+            const popup = document.querySelector('.success-popup');
+            if (popup) {
+                popup.remove();
+                document.body.style.overflow = 'auto';
+            }
+            closeApplicationForm();
+        }
 
         // Close form when clicking outside
         window.onclick = function(event) {

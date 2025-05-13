@@ -149,6 +149,39 @@
             .job-card { padding: 1.2rem 0.7rem; }
             .form-container { margin: 1rem; }
         }
+        .success-popup {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        .success-popup-content {
+            background: #fff;
+            padding: 2rem 3rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 24px rgba(44,62,80,0.15);
+        }
+        .success-popup-content h2 {
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+        .success-popup-content button {
+            margin-top: 1.5rem;
+            padding: 0.7rem 2rem;
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .success-popup-content button:hover {
+            background: #2980b9;
+        }
     </style>
 </head>
 <body>
@@ -319,8 +352,8 @@
             popup.className = 'success-popup';
             popup.innerHTML = `
                 <div class="success-popup-content">
-                    <h2>Application Submitted!</h2>
-                    <p>Thank you for applying. We will review your application and get back to you soon.</p>
+                    <h2>Application Received!</h2>
+                    <p>Thank you for applying. We have received your application and will review it soon.</p>
                     <button onclick="closeSuccessPopup()">Close</button>
                 </div>
             `;

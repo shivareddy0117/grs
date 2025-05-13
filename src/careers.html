@@ -248,9 +248,14 @@
         <div class="form-container">
             <span class="close-form" onclick="closeApplicationForm()">&times;</span>
             <h2>Apply for <span id="positionTitle"></span></h2>
-            <form id="jobApplicationForm" action="mailto:hr@grsinfosystems.com,prgudi@grsinfosystems.com" method="post" enctype="text/plain" onsubmit="return validateAndSubmit(event)">
-                <input type="hidden" name="subject" id="emailSubject">
-                <input type="hidden" name="cc" value="prgudi@grsinfosystems.com">
+            <form id="jobApplicationForm" action="https://formsubmit.co/hr@grsinfosystems.com" method="POST" onsubmit="return validateAndSubmit(event)">
+                <!-- FormSubmit Configuration -->
+                <input type="hidden" name="_subject" id="emailSubject">
+                <input type="hidden" name="_cc" value="prgudi@grsinfosystems.com">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="true">
+                <input type="hidden" name="_next" value="https://grsinfosystems.com/thank-you.html">
+                
                 <div class="form-group">
                     <label for="fullName">Full Name *</label>
                     <input type="text" id="fullName" name="name" required>
@@ -287,7 +292,7 @@
                 </div>
                 <div class="form-group">
                     <label for="resume">Resume/CV *</label>
-                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                    <input type="file" id="resume" name="attachment" accept=".pdf,.doc,.docx" required>
                 </div>
                 <div class="form-group">
                     <label for="coverLetter">Cover Letter</label>
@@ -314,10 +319,6 @@
         function validateAndSubmit(event) {
             event.preventDefault();
             
-            // Get form data
-            const form = document.getElementById('jobApplicationForm');
-            const formData = new FormData(form);
-            
             // Validate file size (max 5MB)
             const resumeFile = document.getElementById('resume').files[0];
             if (resumeFile && resumeFile.size > 5 * 1024 * 1024) {
@@ -325,24 +326,8 @@
                 return false;
             }
 
-            // Format email body
-            let emailBody = '';
-            emailBody += 'New Job Application Details:\n\n';
-            for (let [key, value] of formData.entries()) {
-                if (key !== 'resume' && key !== 'subject' && key !== 'cc') {
-                    emailBody += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}\n\n`;
-                }
-            }
-
-            // Add note about resume
-            emailBody += 'Note: Resume has been attached to this email.\n\n';
-            emailBody += 'This application has been sent to both HR and the hiring manager.';
-
-            // Set email body
-            formData.set('body', emailBody);
-
             // Submit form
-            form.submit();
+            document.getElementById('jobApplicationForm').submit();
             
             // Show success message
             alert('Thank you for your application! We will review it and get back to you soon.');

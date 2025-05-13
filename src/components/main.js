@@ -32,6 +32,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Appointment form handling for contact page
+    const appointmentForm = document.querySelector('.appointment-form');
+    if (appointmentForm) {
+        appointmentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(appointmentForm);
+            const data = Object.fromEntries(formData);
+            // Here you would typically send the data to your server or email service
+            console.log('Appointment submitted:', data);
+            alert('Thank you for booking an appointment! We will contact you soon.');
+            appointmentForm.reset();
+        });
+    }
+
     // Add scroll-based navbar styling
     const navbar = document.querySelector('.navbar');
     if (navbar) {

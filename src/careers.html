@@ -11,8 +11,9 @@
         .careers-hero {
             background: linear-gradient(135deg, #2c3e50, #3498db);
             color: white;
-            padding: 4rem 0 2rem 0;
+            padding: 6rem 0 3rem 0;
             text-align: center;
+            margin-top: 60px;
         }
         .careers-listing {
             display: grid;
@@ -35,16 +36,22 @@
             color: #3498db;
             margin-bottom: 1rem;
         }
+        .job-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
         .apply-btn {
             display: inline-block;
-            margin-top: 2rem;
-            padding: 1rem 2rem;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
             background: #3498db;
             color: #fff;
             border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
             transition: background 0.2s;
+            cursor: pointer;
         }
         .apply-btn:hover {
             background: #2980b9;
@@ -70,9 +77,71 @@
             color: #3498db;
             margin-bottom: 1rem;
         }
+        .application-form {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        .form-container {
+            background: white;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 10px;
+            position: relative;
+        }
+        .close-form {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .submit-btn {
+            background: #3498db;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .submit-btn:hover {
+            background: #2980b9;
+        }
         @media (max-width: 600px) {
-            .careers-hero { padding: 2rem 0 1rem 0; }
+            .careers-hero { padding: 4rem 0 2rem 0; }
             .job-card { padding: 1.2rem 0.7rem; }
+            .form-container { margin: 1rem; }
         }
     </style>
 </head>
@@ -130,64 +199,130 @@
             <div class="careers-listing">
                 <div class="job-card">
                     <h3>Data Engineer</h3>
-                    <ul>
-                        <li>Design and implement scalable data pipelines and ETL processes</li>
-                        <li>Build and maintain data warehouses and data lakes</li>
-                        <li>Optimize data infrastructure for performance and reliability</li>
-                        <li>Collaborate with data scientists and ML engineers</li>
-                    </ul>
+                    <div class="job-description">
+                        <p>Join our data engineering team to build robust and scalable data infrastructure. You'll work on designing and implementing data pipelines, optimizing data warehouses, and ensuring data quality across our systems. This role offers the opportunity to work with cutting-edge technologies and make a significant impact on our data architecture.</p>
+                    </div>
+                    <button class="apply-btn" onclick="openApplicationForm('Data Engineer')">Apply Now</button>
                 </div>
                 <div class="job-card">
                     <h3>Software Engineer</h3>
-                    <ul>
-                        <li>Develop scalable web applications and microservices</li>
-                        <li>Implement cloud-native solutions using modern frameworks</li>
-                        <li>Write clean, maintainable code and conduct code reviews</li>
-                        <li>Collaborate with cross-functional teams</li>
-                    </ul>
+                    <div class="job-description">
+                        <p>As a software engineer at GRS, you'll be at the forefront of developing innovative solutions. You'll work on building scalable applications, implementing cloud-native solutions, and contributing to our technical excellence. This role offers the chance to work with modern technologies and make a real impact on our products.</p>
+                    </div>
+                    <button class="apply-btn" onclick="openApplicationForm('Software Engineer')">Apply Now</button>
                 </div>
                 <div class="job-card">
                     <h3>Machine Learning Engineer</h3>
-                    <ul>
-                        <li>Design and deploy production-grade ML models</li>
-                        <li>Implement MLOps practices and model monitoring</li>
-                        <li>Optimize model performance and scalability</li>
-                        <li>Work with data engineers on pipeline integration</li>
-                    </ul>
+                    <div class="job-description">
+                        <p>Join our ML team to develop and deploy production-grade machine learning models. You'll work on implementing MLOps practices, optimizing model performance, and integrating ML solutions into our products. This role offers the opportunity to work on challenging problems and drive innovation in AI/ML.</p>
+                    </div>
+                    <button class="apply-btn" onclick="openApplicationForm('Machine Learning Engineer')">Apply Now</button>
                 </div>
                 <div class="job-card">
                     <h3>AI Engineer</h3>
-                    <ul>
-                        <li>Develop AI solutions for business automation</li>
-                        <li>Implement NLP and computer vision applications</li>
-                        <li>Integrate AI models with existing systems</li>
-                        <li>Research and implement cutting-edge AI technologies</li>
-                    </ul>
+                    <div class="job-description">
+                        <p>As an AI Engineer, you'll develop cutting-edge AI solutions that transform businesses. You'll work on implementing NLP and computer vision applications, integrating AI models with existing systems, and pushing the boundaries of what's possible with artificial intelligence.</p>
+                    </div>
+                    <button class="apply-btn" onclick="openApplicationForm('AI Engineer')">Apply Now</button>
                 </div>
                 <div class="job-card">
                     <h3>Cloud Solutions Architect</h3>
-                    <ul>
-                        <li>Design cloud-native architectures</li>
-                        <li>Implement infrastructure as code</li>
-                        <li>Optimize cloud costs and performance</li>
-                        <li>Lead cloud migration projects</li>
-                    </ul>
+                    <div class="job-description">
+                        <p>Lead our cloud architecture initiatives as a Cloud Solutions Architect. You'll design cloud-native architectures, implement infrastructure as code, and optimize cloud costs and performance. This role offers the opportunity to shape our cloud strategy and drive digital transformation.</p>
+                    </div>
+                    <button class="apply-btn" onclick="openApplicationForm('Cloud Solutions Architect')">Apply Now</button>
                 </div>
                 <div class="job-card">
                     <h3>Data Scientist</h3>
-                    <ul>
-                        <li>Develop predictive models and analytics solutions</li>
-                        <li>Perform advanced statistical analysis</li>
-                        <li>Create data-driven business insights</li>
-                        <li>Collaborate with engineering teams</li>
-                    </ul>
+                    <div class="job-description">
+                        <p>Join our data science team to develop predictive models and analytics solutions. You'll work on creating data-driven business insights, performing advanced statistical analysis, and collaborating with engineering teams to implement solutions that drive business value.</p>
+                    </div>
+                    <button class="apply-btn" onclick="openApplicationForm('Data Scientist')">Apply Now</button>
                 </div>
-            </div>
-            <div style="text-align:center;">
-                <a href="mailto:hr@grsinfosystems.com" class="apply-btn">Apply Now</a>
             </div>
         </div>
     </section>
+
+    <!-- Application Form -->
+    <div id="applicationForm" class="application-form">
+        <div class="form-container">
+            <span class="close-form" onclick="closeApplicationForm()">&times;</span>
+            <h2>Apply for <span id="positionTitle"></span></h2>
+            <form id="jobApplicationForm" onsubmit="submitApplication(event)">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location *</label>
+                    <input type="text" id="location" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not-to-say">Prefer not to say</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="education">Education *</label>
+                    <textarea id="education" required placeholder="Please list your educational background"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="experience">Experience *</label>
+                    <textarea id="experience" required placeholder="Please describe your relevant work experience"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="resume">Resume/CV *</label>
+                    <input type="file" id="resume" accept=".pdf,.doc,.docx" required>
+                </div>
+                <div class="form-group">
+                    <label for="coverLetter">Cover Letter</label>
+                    <textarea id="coverLetter" placeholder="Tell us why you're interested in this position"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openApplicationForm(position) {
+            document.getElementById('applicationForm').style.display = 'block';
+            document.getElementById('positionTitle').textContent = position;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeApplicationForm() {
+            document.getElementById('applicationForm').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function submitApplication(event) {
+            event.preventDefault();
+            // Here you would typically handle the form submission
+            // For now, we'll just show an alert
+            alert('Thank you for your application! We will review it and get back to you soon.');
+            closeApplicationForm();
+        }
+
+        // Close form when clicking outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('applicationForm')) {
+                closeApplicationForm();
+            }
+        }
+    </script>
     <footer>
         <div class="container">
             <div class="footer-content">

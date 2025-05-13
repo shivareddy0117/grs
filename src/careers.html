@@ -7,6 +7,12 @@
     <meta name="description" content="Explore exciting career opportunities at GRS Info Systems. Join our team of experts in IT solutions, cloud services, AI/ML, and data engineering.">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("YOUR_PUBLIC_KEY"); // Add your EmailJS public key here
+        })();
+    </script>
     <style>
         .careers-hero {
             background: linear-gradient(135deg, #2c3e50, #3498db);
@@ -248,20 +254,13 @@
         <div class="form-container">
             <span class="close-form" onclick="closeApplicationForm()">&times;</span>
             <h2>Apply for <span id="positionTitle"></span></h2>
-            <form id="jobApplicationForm" action="https://formsubmit.co/hr@grsinfosystems.com" method="POST" onsubmit="return validateAndSubmit(event)">
-                <!-- FormSubmit Configuration -->
-                <input type="hidden" name="_subject" id="emailSubject">
-                <input type="hidden" name="_cc" value="prgudi@grsinfosystems.com">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="true">
-                <input type="hidden" name="_next" value="https://grsinfosystems.com/thank-you.html">
-                
+            <form id="applicationForm" class="application-form" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="fullName">Full Name *</label>
-                    <input type="text" id="fullName" name="name" required>
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email *</label>
+                    <label for="email">Email Address *</label>
                     <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
@@ -269,34 +268,26 @@
                     <input type="tel" id="phone" name="phone" required>
                 </div>
                 <div class="form-group">
-                    <label for="location">Location *</label>
-                    <input type="text" id="location" name="location" required>
-                </div>
-                <div class="form-group">
-                    <label for="gender">Gender</label>
-                    <select id="gender" name="gender">
-                        <option value="">Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                        <option value="prefer-not-to-say">Prefer not to say</option>
+                    <label for="position">Position Applied For *</label>
+                    <select id="position" name="position" required>
+                        <option value="">Select a position</option>
+                        <option value="Software Developer">Software Developer</option>
+                        <option value="UI/UX Designer">UI/UX Designer</option>
+                        <option value="Project Manager">Project Manager</option>
+                        <option value="Business Analyst">Business Analyst</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="education">Education *</label>
-                    <textarea id="education" name="education" required placeholder="Please list your educational background"></textarea>
+                    <label for="experience">Years of Experience *</label>
+                    <input type="number" id="experience" name="experience" min="0" required>
                 </div>
                 <div class="form-group">
-                    <label for="experience">Experience *</label>
-                    <textarea id="experience" name="experience" required placeholder="Please describe your relevant work experience"></textarea>
+                    <label for="resume">Resume/CV (PDF, DOC, DOCX - Max 5MB) *</label>
+                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
                 </div>
                 <div class="form-group">
-                    <label for="resume">Resume/CV *</label>
-                    <input type="file" id="resume" name="attachment" accept=".pdf,.doc,.docx" required>
-                </div>
-                <div class="form-group">
-                    <label for="coverLetter">Cover Letter</label>
-                    <textarea id="coverLetter" name="coverLetter" placeholder="Tell us why you're interested in this position"></textarea>
+                    <label for="message">Cover Letter</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
                 </div>
                 <button type="submit" class="submit-btn">Submit Application</button>
             </form>
@@ -307,7 +298,6 @@
         function openApplicationForm(position) {
             document.getElementById('applicationForm').style.display = 'block';
             document.getElementById('positionTitle').textContent = position;
-            document.getElementById('emailSubject').value = `Job Application: ${position}`;
             document.body.style.overflow = 'hidden';
         }
 
@@ -316,25 +306,36 @@
             document.body.style.overflow = 'auto';
         }
 
-        function validateAndSubmit(event) {
-            event.preventDefault();
+        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
             
-            // Validate file size (max 5MB)
-            const resumeFile = document.getElementById('resume').files[0];
-            if (resumeFile && resumeFile.size > 5 * 1024 * 1024) {
-                alert('Resume file size should be less than 5MB');
-                return false;
+            const submitBtn = this.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            
+            try {
+                const formData = new FormData(this);
+                
+                const response = await fetch('http://localhost:3000/submit-application', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    window.location.href = 'thank-you.html';
+                } else {
+                    alert('Error submitting application. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error submitting application. Please try again.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Application';
             }
-
-            // Submit form
-            document.getElementById('jobApplicationForm').submit();
-            
-            // Show success message
-            alert('Thank you for your application! We will review it and get back to you soon.');
-            closeApplicationForm();
-            
-            return false;
-        }
+        });
 
         // Close form when clicking outside
         window.onclick = function(event) {

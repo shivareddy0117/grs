@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Careers at GRS Info Systems</title>
-    <meta name="description" content="Explore exciting career opportunities at GRS Info Systems. View sample job descriptions for Software Engineers, Automation Testers, Machine Learning Engineers, AI Engineers, Cybersecurity Engineers, Data Scientists, Network Engineers, Systems Engineers, and Hardware Engineers.">
+    <meta name="description" content="Explore exciting career opportunities at GRS Info Systems. Join our team of experts in IT solutions, cloud services, AI/ML, and data engineering.">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -49,6 +49,27 @@
         .apply-btn:hover {
             background: #2980b9;
         }
+        .expertise-section {
+            background: #fff;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .expertise-item {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .expertise-item i {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
         @media (max-width: 600px) {
             .careers-hero { padding: 2rem 0 1rem 0; }
             .job-card { padding: 1.2rem 0.7rem; }
@@ -59,7 +80,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo">
-                <img src="logo.jpg" alt="GRS Info Systems Logo" style="height:60px; display:inline-block; vertical-align:middle;">
+                <img src="logo2.png" alt="GRS Info Systems Logo" style="height:60px; display:inline-block; vertical-align:middle;">
                 <span style="position:absolute; left:-9999px;">GRS Info Systems</span>
             </div>
             <ul class="nav-links">
@@ -74,82 +95,91 @@
     <section class="careers-hero">
         <div class="container">
             <h2 style="font-size:2.5rem; margin-bottom:1rem;">Careers at GRS Info Systems</h2>
-            <p style="font-size:1.2rem; max-width:700px; margin:0 auto;">Join our team and work on innovative projects in IT, AI, and engineering. Explore our open positions and help us build the future of technology.</p>
+            <p style="font-size:1.2rem; max-width:700px; margin:0 auto;">Join our team of experts in delivering end-to-end IT solutions, cloud services, and cutting-edge AI/ML innovations. Help us build scalable solutions that transform businesses.</p>
+        </div>
+    </section>
+    <section class="expertise-section">
+        <div class="container">
+            <h2>Our Expertise</h2>
+            <div class="expertise-grid">
+                <div class="expertise-item">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cloud Solutions</h3>
+                    <p>End-to-end cloud infrastructure and migration services</p>
+                </div>
+                <div class="expertise-item">
+                    <i class="fas fa-brain"></i>
+                    <h3>AI & ML</h3>
+                    <p>Custom AI/ML model development and deployment</p>
+                </div>
+                <div class="expertise-item">
+                    <i class="fas fa-database"></i>
+                    <h3>Data Engineering</h3>
+                    <p>Scalable data pipelines and analytics solutions</p>
+                </div>
+                <div class="expertise-item">
+                    <i class="fas fa-code"></i>
+                    <h3>Software Development</h3>
+                    <p>Full-stack development and custom software solutions</p>
+                </div>
+            </div>
         </div>
     </section>
     <section class="careers" style="background:#f7fafd; padding:3rem 0;">
         <div class="container">
             <div class="careers-listing">
                 <div class="job-card">
-                    <h3>Software Engineer</h3>
+                    <h3>Data Engineer</h3>
                     <ul>
-                        <li>Develop, test, and maintain software applications.</li>
-                        <li>Collaborate with cross-functional teams to define and design new features.</li>
-                        <li>Write clean, scalable code and participate in code reviews.</li>
+                        <li>Design and implement scalable data pipelines and ETL processes</li>
+                        <li>Build and maintain data warehouses and data lakes</li>
+                        <li>Optimize data infrastructure for performance and reliability</li>
+                        <li>Collaborate with data scientists and ML engineers</li>
                     </ul>
                 </div>
                 <div class="job-card">
-                    <h3>Automation Tester</h3>
+                    <h3>Software Engineer</h3>
                     <ul>
-                        <li>Design and implement automated test scripts.</li>
-                        <li>Identify, record, and document thoroughly any bugs.</li>
-                        <li>Work closely with developers to ensure quality releases.</li>
+                        <li>Develop scalable web applications and microservices</li>
+                        <li>Implement cloud-native solutions using modern frameworks</li>
+                        <li>Write clean, maintainable code and conduct code reviews</li>
+                        <li>Collaborate with cross-functional teams</li>
                     </ul>
                 </div>
                 <div class="job-card">
                     <h3>Machine Learning Engineer</h3>
                     <ul>
-                        <li>Build and deploy machine learning models for real-world applications.</li>
-                        <li>Analyze large datasets to extract actionable insights.</li>
-                        <li>Collaborate with data scientists and software engineers.</li>
+                        <li>Design and deploy production-grade ML models</li>
+                        <li>Implement MLOps practices and model monitoring</li>
+                        <li>Optimize model performance and scalability</li>
+                        <li>Work with data engineers on pipeline integration</li>
                     </ul>
                 </div>
                 <div class="job-card">
                     <h3>AI Engineer</h3>
                     <ul>
-                        <li>Design and develop AI-driven solutions and algorithms.</li>
-                        <li>Integrate AI models into production systems.</li>
-                        <li>Stay updated with the latest AI research and technologies.</li>
+                        <li>Develop AI solutions for business automation</li>
+                        <li>Implement NLP and computer vision applications</li>
+                        <li>Integrate AI models with existing systems</li>
+                        <li>Research and implement cutting-edge AI technologies</li>
                     </ul>
                 </div>
                 <div class="job-card">
-                    <h3>Cybersecurity Engineer</h3>
+                    <h3>Cloud Solutions Architect</h3>
                     <ul>
-                        <li>Implement and monitor security measures for the protection of systems and information.</li>
-                        <li>Identify and resolve security issues and vulnerabilities.</li>
-                        <li>Conduct regular security audits and risk assessments.</li>
+                        <li>Design cloud-native architectures</li>
+                        <li>Implement infrastructure as code</li>
+                        <li>Optimize cloud costs and performance</li>
+                        <li>Lead cloud migration projects</li>
                     </ul>
                 </div>
                 <div class="job-card">
                     <h3>Data Scientist</h3>
                     <ul>
-                        <li>Collect, analyze, and interpret large datasets.</li>
-                        <li>Develop predictive models and machine learning algorithms.</li>
-                        <li>Present findings to stakeholders with actionable recommendations.</li>
-                    </ul>
-                </div>
-                <div class="job-card">
-                    <h3>Network Engineer</h3>
-                    <ul>
-                        <li>Design, implement, and manage network infrastructure.</li>
-                        <li>Troubleshoot network issues and ensure network security.</li>
-                        <li>Maintain documentation and network diagrams.</li>
-                    </ul>
-                </div>
-                <div class="job-card">
-                    <h3>Systems Engineer</h3>
-                    <ul>
-                        <li>Install, configure, and maintain operating systems and software.</li>
-                        <li>Monitor system performance and troubleshoot issues.</li>
-                        <li>Automate routine tasks and support IT operations.</li>
-                    </ul>
-                </div>
-                <div class="job-card">
-                    <h3>Hardware Engineer</h3>
-                    <ul>
-                        <li>Design and test computer hardware components and systems.</li>
-                        <li>Collaborate with software and systems engineers for integration.</li>
-                        <li>Research and recommend new hardware technologies.</li>
+                        <li>Develop predictive models and analytics solutions</li>
+                        <li>Perform advanced statistical analysis</li>
+                        <li>Create data-driven business insights</li>
+                        <li>Collaborate with engineering teams</li>
                     </ul>
                 </div>
             </div>
